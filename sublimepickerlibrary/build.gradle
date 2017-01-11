@@ -20,7 +20,7 @@ ext {
     bintrayRepo = 'maven'
     bintrayName = 'sublime-picker'
 
-    publishedGroupId = 'com.appeaser.sublimepickerlibrary'
+    publishedGroupId = 'com.colapps.sublimepickerlibrary'
     libraryName = 'SublimePicker'
     artifact = 'sublimepickerlibrary'
 

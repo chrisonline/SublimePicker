@@ -15,6 +15,8 @@
 
 <resources>
     <string-array name="recurrence_freq">
+        <item>REPEAT MINUTELY</item>
+        <item>REPEAT HOURLY</item>
         <item>"تکرار روزانه"</item>
         <item>"تکرار هفتگی"</item>
         <item>"تکرار ماهانه"</item>

@@ -16,6 +16,8 @@
 <resources>
 
     <string-array name="recurrence_freq">
+        <item>REPEAT MINUTELY</item>
+        <item>REPEAT HOURLY</item>
         <item>"தினமும் நினைவுபடுத்து"</item>
         <item>"வாரந்தோறும் நினைவுபடுத்து"</item>
         <item>"மாதந்தோறும் நினைவுபடுத்து"</item>

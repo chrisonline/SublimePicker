@@ -15,6 +15,8 @@
 
 <resources>
     <string-array name="recurrence_freq">
+        <item>REPEAT MINUTELY</item>
+        <item>REPEAT HOURLY</item>
         <item>"ធ្វើ​ឡើងវិញ​ប្រចាំ​ថ្ងៃ"</item>
         <item>"ធ្វើ​ឡើងវិញ​ប្រចាំ​សប្ដាហ៍"</item>
         <item>"ធ្វើ​ឡើងវិញ​ប្រចាំ​ខែ"</item>

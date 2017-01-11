@@ -15,6 +15,8 @@
 
 <resources>
     <string-array name="recurrence_freq">
+        <item>REPEAT MINUTELY</item>
+        <item>REPEAT HOURLY</item>
         <item>"DNEVNO PONAVLJANJE"</item>
         <item>"PONAVLJAJ TJEDNO"</item>
         <item>"PONAVLJAJ MJESEČNO"</item>

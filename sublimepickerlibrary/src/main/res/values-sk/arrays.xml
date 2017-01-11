@@ -15,6 +15,8 @@
 
 <resources>
     <string-array name="recurrence_freq">
+        <item>REPEAT MINUTELY</item>
+        <item>REPEAT HOURLY</item>
         <item>"OPAKOVAŤ DENNE"</item>
         <item>"OPAKOVAŤ TÝŽDENNE"</item>
         <item>"OPAKOVAŤ MESAČNE"</item>

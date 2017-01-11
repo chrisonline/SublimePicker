@@ -59,6 +59,11 @@
         <item quantity="one">Daily</item>
         <item quantity="other">Every <xliff:g id="number">%d</xliff:g> days</item>
     </plurals>
+    <!-- A description for an event that repeats hourly. For example, Every 2 hours [CHAR LIMIT=15]-->
+    <plurals name="hourly">
+        <item quantity="one">Hourly</item>
+        <item quantity="other">Every <xliff:g id="number">%d</xliff:g> hours</item>
+    </plurals>
     <!-- Part of a description of an repeating event. This part how many times the event repeats.
          The part before the semi-colon describes how it repeats.
          e.g. Every 2 weeks; for 15 times [CHAR LIMIT=15] -->
@@ -83,6 +88,20 @@
     <string name="recurrence_end_date">Until <xliff:g id="date">%s</xliff:g></string>
     <!-- Specifies that a repeating event to repeat for a number of times. A repeating event can repeat forever, repeat in a certain frequency until a certain date, or repeat for a number of times. e.g. repeat 10 times and stop. This string is for the last case [CHAR LIMIT=25] -->
     <string name="recurrence_end_count_label">For a number of events</string>
+    <!-- Strings to describe how frequently to repeat an event (e.g. every 5 hours) -->
+    <plurals name="recurrence_interval_minutely">
+        <!-- Singular form [CHAR LIMIT=30] -->
+        <item quantity="one">Every <xliff:g id="count">%d</xliff:g> minute</item>
+        <!-- Plural form [CHAR LIMIT=30] -->
+        <item quantity="other">Every <xliff:g id="count">%d</xliff:g> minutes</item>
+    </plurals>
+    <!-- Strings to describe how frequently to repeat an event (e.g. every 5 hours) -->
+    <plurals name="recurrence_interval_hourly">
+        <!-- Singular form [CHAR LIMIT=30] -->
+        <item quantity="one">Every <xliff:g id="count">%d</xliff:g> hour</item>
+        <!-- Plural form [CHAR LIMIT=30] -->
+        <item quantity="other">Every <xliff:g id="count">%d</xliff:g> hours</item>
+    </plurals>
     <!-- Strings to describe how frequently to repeat an event (e.g. every 5 days) -->
     <plurals name="recurrence_interval_daily">
         <!-- Singular form [CHAR LIMIT=30] -->

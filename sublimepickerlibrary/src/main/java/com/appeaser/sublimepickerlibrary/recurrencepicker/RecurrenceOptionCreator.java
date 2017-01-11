@@ -132,6 +132,8 @@ public class RecurrenceOptionCreator extends FrameLayout
 
     private Spinner mFreqSpinner;
     private static final int[] mFreqModelToEventRecurrence = {
+            EventRecurrence.MINUTELY,
+            EventRecurrence.HOURLY,
             EventRecurrence.DAILY,
             EventRecurrence.WEEKLY,
             EventRecurrence.MONTHLY,
@@ -226,10 +228,12 @@ public class RecurrenceOptionCreator extends FrameLayout
     private class RecurrenceModel implements Parcelable {
 
         // Should match EventRecurrence.DAILY, etc
-        static final int FREQ_DAILY = 0;
-        static final int FREQ_WEEKLY = 1;
-        static final int FREQ_MONTHLY = 2;
-        static final int FREQ_YEARLY = 3;
+        static final int FREQ_MINUTELY = 0;
+        static final int FREQ_HOURLY = 1;
+        static final int FREQ_DAILY = 2;
+        static final int FREQ_WEEKLY = 3;
+        static final int FREQ_MONTHLY = 4;
+        static final int FREQ_YEARLY = 5;
 
         static final int END_NEVER = 0;
         static final int END_BY_DATE = 1;
@@ -435,6 +439,7 @@ public class RecurrenceOptionCreator extends FrameLayout
 
     static public boolean canHandleRecurrenceRule(EventRecurrence er) {
         switch (er.freq) {
+            case EventRecurrence.HOURLY:
             case EventRecurrence.DAILY:
             case EventRecurrence.MONTHLY:
             case EventRecurrence.YEARLY:
@@ -494,6 +499,12 @@ public class RecurrenceOptionCreator extends FrameLayout
                                                    RecurrenceModel model) {
         // Freq:
         switch (er.freq) {
+            case EventRecurrence.MINUTELY:
+                model.freq = RecurrenceModel.FREQ_MINUTELY;
+                break;
+            case EventRecurrence.HOURLY:
+                model.freq = RecurrenceModel.FREQ_HOURLY;
+                break;
             case EventRecurrence.DAILY:
                 model.freq = RecurrenceModel.FREQ_DAILY;
                 break;
@@ -1142,6 +1153,12 @@ public class RecurrenceOptionCreator extends FrameLayout
         mMonthRepeatByRadioGroup.setVisibility(mModel.freq == RecurrenceModel.FREQ_MONTHLY ? View.VISIBLE : View.GONE);
 
         switch (mModel.freq) {
+            case RecurrenceModel.FREQ_MINUTELY:
+                mIntervalResId = R.plurals.recurrence_interval_minutely;
+                break;
+            case RecurrenceModel.FREQ_HOURLY:
+                mIntervalResId = R.plurals.recurrence_interval_hourly;
+                break;
             case RecurrenceModel.FREQ_DAILY:
                 mIntervalResId = R.plurals.recurrence_interval_daily;
                 break;

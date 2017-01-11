@@ -15,6 +15,8 @@
 
 <resources>
     <string-array name="recurrence_freq">
+        <item>REPEAT MINUTELY</item>
+        <item>REPEAT HOURLY</item>
         <item>"UPPREPA VARJE DAG"</item>
         <item>"UPPREPA VARJE VECKA"</item>
         <item>"UPPREPA VARJE MÅNAD"</item>
