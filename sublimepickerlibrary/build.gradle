@@ -18,7 +18,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'SublimePicker'
+    bintrayName = 'sublime-picker'
 
     publishedGroupId = 'com.colapps.sublimepickerlibrary'
     libraryName = 'SublimePicker'
