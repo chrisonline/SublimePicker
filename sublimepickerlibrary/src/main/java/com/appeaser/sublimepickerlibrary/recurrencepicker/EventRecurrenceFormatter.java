@@ -56,6 +56,10 @@ public class EventRecurrenceFormatter {
 
         int interval = recurrence.interval <= 1 ? 1 : recurrence.interval;
         switch (recurrence.freq) {
+            case EventRecurrence.MINUTELY:
+                return r.getQuantityString(R.plurals.minutely, interval, interval) + endString;
+            case EventRecurrence.HOURLY:
+                return r.getQuantityString(R.plurals.hourly, interval, interval) + endString;
             case EventRecurrence.DAILY:
                 return r.getQuantityString(R.plurals.daily, interval, interval) + endString;
             case EventRecurrence.WEEKLY: {

@@ -439,6 +439,7 @@ public class RecurrenceOptionCreator extends FrameLayout
 
     static public boolean canHandleRecurrenceRule(EventRecurrence er) {
         switch (er.freq) {
+            case EventRecurrence.MINUTELY:
             case EventRecurrence.HOURLY:
             case EventRecurrence.DAILY:
             case EventRecurrence.MONTHLY:

@@ -64,6 +64,11 @@
         <item quantity="one">Hourly</item>
         <item quantity="other">Every <xliff:g id="number">%d</xliff:g> hours</item>
     </plurals>
+    <!-- A description for an event that repeats hourly. For example, Every 2 hours [CHAR LIMIT=15]-->
+    <plurals name="minutely">
+        <item quantity="one">Minutely</item>
+        <item quantity="other">Every <xliff:g id="number">%d</xliff:g> minutes</item>
+    </plurals>
     <!-- Part of a description of an repeating event. This part how many times the event repeats.
          The part before the semi-colon describes how it repeats.
          e.g. Every 2 weeks; for 15 times [CHAR LIMIT=15] -->
