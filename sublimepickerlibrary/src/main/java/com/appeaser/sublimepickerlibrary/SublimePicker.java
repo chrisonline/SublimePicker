@@ -107,6 +107,9 @@ public class SublimePicker extends FrameLayout
     // null/invalid(zero-length, empty) string
     private DateFormat mDefaultDateFormatter, mDefaultTimeFormatter;
 
+    // Keeps the start date / time if only RecurrencePicker is used
+    private Calendar startDateTime;
+
     // Listener for recurrence picker
     private final SublimeRecurrencePicker.OnRepeatOptionSetListener mRepeatOptionSetListener = new SublimeRecurrencePicker.OnRepeatOptionSetListener() {
         @Override
@@ -232,6 +235,28 @@ public class SublimePicker extends FrameLayout
     }
 
     public void initializePicker(SublimeOptions options, SublimeListenerAdapter listener) {
+        if (listener == null) {
+            throw new IllegalArgumentException("Listener cannot be null.");
+        }
+
+        if (options != null) {
+            options.verifyValidity();
+        } else {
+            options = new SublimeOptions();
+        }
+
+        mOptions = options;
+        mListener = listener;
+
+        processOptions();
+        updateDisplay();
+    }
+
+    public void initializePicker(SublimeOptions options, SublimeListenerAdapter listener,
+                                 Calendar startDateTime) {
+
+        this.startDateTime = startDateTime;
+
         if (listener == null) {
             throw new IllegalArgumentException("Listener cannot be null.");
         }
@@ -611,6 +636,12 @@ public class SublimePicker extends FrameLayout
             Calendar cal = mDatePickerEnabled ?
                     mDatePicker.getSelectedDate().getStartDate()
                     : SUtils.getCalendarForLocale(null, Locale.getDefault());
+
+            // if a startDateTime is set, use this instead
+            // used if only recurrence picker is shown
+            if(startDateTime != null) {
+                cal.setTimeInMillis(startDateTime.getTimeInMillis());
+            }
 
             mSublimeRecurrencePicker.initializeData(mRepeatOptionSetListener,
                     mCurrentRecurrenceOption, mRecurrenceRule,
