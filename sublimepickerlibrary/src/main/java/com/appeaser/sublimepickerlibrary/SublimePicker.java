@@ -110,6 +110,8 @@ public class SublimePicker extends FrameLayout
     // Keeps the start date / time if only RecurrencePicker is used
     private Calendar startDateTime;
 
+    private boolean mShowPickerAfterRecurrencePicker;
+
     // Listener for recurrence picker
     private final SublimeRecurrencePicker.OnRepeatOptionSetListener mRepeatOptionSetListener = new SublimeRecurrencePicker.OnRepeatOptionSetListener() {
         @Override
@@ -121,7 +123,8 @@ public class SublimePicker extends FrameLayout
 
         @Override
         public void onDone() {
-            if (mDatePickerEnabled || mTimePickerEnabled) {
+            if (mShowPickerAfterRecurrencePicker &&
+                    (mDatePickerEnabled || mTimePickerEnabled)) {
                 updateCurrentPicker();
                 updateDisplay();
             } else { /* No other picker is activated. Dismiss. */
@@ -572,6 +575,7 @@ public class SublimePicker extends FrameLayout
         mDatePickerEnabled = mOptions.isDatePickerActive();
         mTimePickerEnabled = mOptions.isTimePickerActive();
         mRecurrencePickerEnabled = mOptions.isRecurrencePickerActive();
+        mShowPickerAfterRecurrencePicker = mOptions.getShowPickerAfterRecurrencePicker();
 
         if (mDatePickerEnabled) {
             //int[] dateParams = mOptions.getDateParams();

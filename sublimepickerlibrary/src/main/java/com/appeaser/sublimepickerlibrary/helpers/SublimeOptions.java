@@ -54,6 +54,7 @@ public class SublimeOptions implements Parcelable {
     private long mMinDate = Long.MIN_VALUE, mMaxDate = Long.MIN_VALUE;
     private boolean mAnimateLayoutChanges, mIs24HourView;
     private int mFirstDayOfWeek = Calendar.SUNDAY;
+    private boolean mShowPickerAfterRecurrencePicker = true;
 
     private SublimeRecurrencePicker.RecurrenceOption mRecurrenceOption
             = SublimeRecurrencePicker.RecurrenceOption.DOES_NOT_REPEAT;
@@ -219,6 +220,22 @@ public class SublimeOptions implements Parcelable {
         mRecurrenceOption = recurrenceOption;
         mRecurrenceRule = recurrenceRule;
         return this;
+    }
+
+    /**
+     * set if the date or time picker should be shown after close of the recurrence picker
+     * @param mShowPickerAfterRecurrencePicker <code>false</code> if it should not be shown
+     */
+    public void setShowPickerAfterRecurrencePicker(boolean mShowPickerAfterRecurrencePicker) {
+        this.mShowPickerAfterRecurrencePicker = mShowPickerAfterRecurrencePicker;
+    }
+
+    /**
+     * get if the date / time picker should be shown after the recurrence picker
+     * @return true or false
+     */
+    public boolean getShowPickerAfterRecurrencePicker() {
+        return mShowPickerAfterRecurrencePicker;
     }
 
     @SuppressWarnings("unused")
