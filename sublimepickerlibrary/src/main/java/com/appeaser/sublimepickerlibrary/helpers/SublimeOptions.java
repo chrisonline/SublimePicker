@@ -53,6 +53,7 @@ public class SublimeOptions implements Parcelable {
     //private int mYear = -1, mMonthOfYear = -1, mDayOfMonth = -1, mHourOfDay = -1, mMinute = -1;
     private long mMinDate = Long.MIN_VALUE, mMaxDate = Long.MIN_VALUE;
     private boolean mAnimateLayoutChanges, mIs24HourView;
+    private int mFirstDayOfWeek = Calendar.SUNDAY;
 
     private SublimeRecurrencePicker.RecurrenceOption mRecurrenceOption
             = SublimeRecurrencePicker.RecurrenceOption.DOES_NOT_REPEAT;
@@ -172,6 +173,14 @@ public class SublimeOptions implements Parcelable {
                 selectedDate.getEndDate().get(Calendar.DAY_OF_MONTH));
     }
 
+    /**
+     * set the first day of the week
+     * @param firstDayOfWeek First day of the week must be between 1 and 7
+     */
+    public void setFirstDayOfWeek(int firstDayOfWeek) {
+        mFirstDayOfWeek = firstDayOfWeek;
+    }
+
     // Set date range
     // Pass '-1L' for 'minDate'/'maxDate' for default
     @SuppressWarnings("unused")
@@ -281,6 +290,14 @@ public class SublimeOptions implements Parcelable {
         }
 
         return new int[]{mHourOfDay, mMinute};
+    }
+
+    /**
+     * get the first day of the week
+     * @return First day of the week 1 to 7
+     */
+    public int getFirstDayOfWeek() {
+        return mFirstDayOfWeek;
     }
 
     public boolean is24HourView() {

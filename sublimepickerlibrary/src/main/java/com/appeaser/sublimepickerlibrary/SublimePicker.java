@@ -593,6 +593,7 @@ public class SublimePicker extends FrameLayout
             }
 
             mDatePicker.setValidationCallback(this);
+            mDatePicker.setFirstDayOfWeek(mOptions.getFirstDayOfWeek());
 
             ivRecurrenceOptionsDP.setVisibility(mRecurrencePickerEnabled ?
                     View.VISIBLE : View.GONE);
