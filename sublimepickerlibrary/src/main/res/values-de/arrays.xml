@@ -15,9 +15,9 @@
 
 <resources>
     <string-array name="recurrence_freq">
-        <item>REPEAT MINUTELY</item>
-        <item>REPEAT HOURLY</item>
-        <item>"Täglich"</item>
+        <item>Minütlich</item>
+        <item>Stündlich</item>
+        <item>Täglich</item>
         <item>"Jede Woche"</item>
         <item>"Jeden Monat"</item>
         <item>"Jedes Jahr"</item>
