@@ -29,7 +29,7 @@ ext {
     siteUrl = 'https://github.com/chrisonline/SublimePicker'
     gitUrl = 'https://github.com/chrisonline/SublimePicker.git'
 
-    libraryVersion = '2.1.3'
+    libraryVersion = '2.1.4'
 
     developerId = 'chrisonline'
     developerName = 'Christian Grasser (Fork from Vikram Kakkar)'
@@ -48,7 +48,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 25
         versionCode 4
-        versionName "2.1.3"
+        versionName "2.1.4"
     }
     buildTypes {
         release {
