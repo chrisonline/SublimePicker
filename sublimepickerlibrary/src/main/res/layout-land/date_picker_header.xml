@@ -103,6 +103,9 @@
 
         <ImageView
             android:id="@+id/ivRecurrenceOptionsDP"
+            android:paddingRight="?attr/dialogPreferredPadding"
+            android:paddingLeft="?attr/dialogPreferredPadding"
+            android:paddingTop="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

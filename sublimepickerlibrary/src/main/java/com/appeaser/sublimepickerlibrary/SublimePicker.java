@@ -44,6 +44,8 @@ import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.appeaser.sublimepickerlibrary.timepicker.SublimeTimePicker;
 import com.appeaser.sublimepickerlibrary.utilities.SUtils;
+import com.mikepenz.community_material_typeface_library.CommunityMaterial;
+import com.mikepenz.iconics.IconicsDrawable;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -432,13 +434,16 @@ public class SublimePicker extends FrameLayout
             typedArray.recycle();
         }
 
-        ivRecurrenceOptionsDP.setImageDrawable(
-                new OverflowDrawable(getContext(), iconColor));
+        IconicsDrawable iconicsDrawable = new IconicsDrawable(getContext())
+                .icon(CommunityMaterial.Icon.cmd_repeat)
+                .sizeDp(24)
+                .color(iconColor);
+
+        ivRecurrenceOptionsDP.setImageDrawable(iconicsDrawable);
         SUtils.setViewBackground(ivRecurrenceOptionsDP,
                 SUtils.createOverflowButtonBg(pressedStateBgColor));
 
-        ivRecurrenceOptionsTP.setImageDrawable(
-                new OverflowDrawable(getContext(), iconColor));
+        ivRecurrenceOptionsTP.setImageDrawable(iconicsDrawable);
         SUtils.setViewBackground(ivRecurrenceOptionsTP,
                 SUtils.createOverflowButtonBg(pressedStateBgColor));
 
