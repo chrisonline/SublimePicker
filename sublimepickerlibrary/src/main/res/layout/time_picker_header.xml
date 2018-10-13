@@ -92,12 +92,13 @@
             android:ellipsize="none" />
     </LinearLayout>
 
+    <!-- The layout_align is set via Code in SublimePicker, because on AM/PM we need to move the icon to the left -->
     <ImageView
         android:id="@+id/ivRecurrenceOptionsTP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="16dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:paddingStart="16dp"
+        android:paddingLeft="16dp"
         android:layout_alignParentTop="true"/>
 </RelativeLayout>

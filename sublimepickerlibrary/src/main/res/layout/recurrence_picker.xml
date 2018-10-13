@@ -76,10 +76,10 @@
                             android:id="@+id/interval"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:ems="2"
+                            android:ems="3"
                             android:gravity="center_horizontal"
                             android:inputType="number"
-                            android:maxLength="2"
+                            android:maxLength="3"
                             android:paddingLeft="4dp"
                             android:paddingRight="4dp"
                             android:selectAllOnFocus="true"
@@ -113,6 +113,12 @@
                             android:id="@+id/repeatMonthlyByNthDayOfTheWeek"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:id="@+id/repeatMonthlyByLastDayOfMonth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/on_the_last_day_each_month"/>
                     </RadioGroup>
 
                     <LinearLayout

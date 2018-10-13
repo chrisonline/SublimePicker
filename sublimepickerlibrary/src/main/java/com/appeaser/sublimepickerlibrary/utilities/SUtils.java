@@ -76,6 +76,7 @@ public class SUtils {
     public static final int CORNER_TOP_LEFT = 0x01, CORNER_TOP_RIGHT = 0x02,
             CORNER_BOTTOM_RIGHT = 0x04, CORNER_BOTTOM_LEFT = 0x08, CORNERS_ALL = 0x0f;
 
+    @SuppressWarnings("ResourceType")
     public static void initializeResources(Context context) {
         TypedArray a = context.obtainStyledAttributes(
                 new int[]{R.attr.colorAccent, R.attr.colorControlHighlight,

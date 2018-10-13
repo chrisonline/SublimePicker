@@ -54,6 +54,20 @@
                 android:text="@string/recurrence_does_not_repeat" />
 
             <TextView
+                android:id="@+id/tvMinutely"
+                style="?attr/spRecurrencePickerOptionsStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/recurrence_minutely" />
+
+            <TextView
+                android:id="@+id/tvHourly"
+                style="?attr/spRecurrencePickerOptionsStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/recurrence_hourly" />
+
+            <TextView
                 android:id="@+id/tvDaily"
                 style="?attr/spRecurrencePickerOptionsStyle"
                 android:layout_width="match_parent"

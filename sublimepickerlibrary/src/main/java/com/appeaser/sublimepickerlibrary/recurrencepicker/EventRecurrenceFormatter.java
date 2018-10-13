@@ -122,6 +122,16 @@ public class EventRecurrenceFormatter {
                     return sb.toString();
                 }
 
+                if(recurrence.bymonthLastCount == 1) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(monthlyStart);
+                    sb.append(" (");
+                    sb.append(r.getString(R.string.on_the_last_day_each_month));
+                    sb.append(")");
+                    sb.append(endString);
+                    return sb.toString();
+                }
+
                 return monthlyStart + endString;
             }
             case EventRecurrence.YEARLY:

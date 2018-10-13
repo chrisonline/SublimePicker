@@ -86,7 +86,7 @@ public class RecurrenceOptionCreator extends FrameLayout
     }
 
     // Update android:maxLength in EditText as needed
-    private static final int INTERVAL_MAX = 99;
+    private static final int INTERVAL_MAX = 999;
     private static final int INTERVAL_DEFAULT = 1;
     // Update android:maxLength in EditText as needed
     private static final int COUNT_MAX = 730;
@@ -175,6 +175,7 @@ public class RecurrenceOptionCreator extends FrameLayout
     private RadioGroup mMonthRepeatByRadioGroup;
     private RadioButton mRepeatMonthlyByNthDayOfWeek;
     private RadioButton mRepeatMonthlyByNthDayOfMonth;
+    private RadioButton mRepeatMonthlyByLastDyOfMonth;
     private String mMonthRepeatByDayOfWeekStr;
 
     private OnRecurrenceSetListener mRecurrenceSetListener;
@@ -241,6 +242,7 @@ public class RecurrenceOptionCreator extends FrameLayout
 
         static final int MONTHLY_BY_DATE = 0;
         static final int MONTHLY_BY_NTH_DAY_OF_WEEK = 1;
+        static final int MONTHLY_BY_LAST_DAY_OF_MONTH = 2;
 
         static final int STATE_NO_RECURRENCE = 0;
         static final int STATE_RECURRENCE = 1;
@@ -290,6 +292,12 @@ public class RecurrenceOptionCreator extends FrameLayout
         int monthlyByMonthDay;
 
         /**
+         * Day of the month to repeat. Used when monthlyRepeat ==
+         * MONTHLY_BY_LAST_DAY_OF_MONTH
+         */
+        int monthlyByLastDayOfMonth;
+
+        /**
          * Day of the week to repeat. Used when monthlyRepeat ==
          * MONTHLY_BY_NTH_DAY_OF_WEEK
          */
@@ -313,7 +321,8 @@ public class RecurrenceOptionCreator extends FrameLayout
                     + endDate + ", endCount=" + endCount + ", weeklyByDayOfWeek="
                     + Arrays.toString(weeklyByDayOfWeek) + ", monthlyRepeat=" + monthlyRepeat
                     + ", monthlyByMonthDay=" + monthlyByMonthDay + ", monthlyByDayOfWeek="
-                    + monthlyByDayOfWeek + ", monthlyByNthDayOfWeek=" + monthlyByNthDayOfWeek + "]";
+                    + monthlyByDayOfWeek + ", monthlyByNthDayOfWeek=" + monthlyByNthDayOfWeek
+                    + ", monthlyByLastDayOfMonth=" + monthlyByLastDayOfMonth +"]";
         }
 
         @Override
@@ -340,6 +349,7 @@ public class RecurrenceOptionCreator extends FrameLayout
             dest.writeBooleanArray(weeklyByDayOfWeek);
             dest.writeInt(monthlyRepeat);
             dest.writeInt(monthlyByMonthDay);
+            dest.writeInt(monthlyByLastDayOfMonth);
             dest.writeInt(monthlyByDayOfWeek);
             dest.writeInt(monthlyByNthDayOfWeek);
             dest.writeInt(recurrenceState);
@@ -357,6 +367,7 @@ public class RecurrenceOptionCreator extends FrameLayout
             in.readBooleanArray(weeklyByDayOfWeek);
             monthlyRepeat = in.readInt();
             monthlyByMonthDay = in.readInt();
+            monthlyByLastDayOfMonth = in.readInt();
             monthlyByDayOfWeek = in.readInt();
             monthlyByNthDayOfWeek = in.readInt();
             recurrenceState = in.readInt();
@@ -511,6 +522,10 @@ public class RecurrenceOptionCreator extends FrameLayout
                 break;
             case EventRecurrence.MONTHLY:
                 model.freq = RecurrenceModel.FREQ_MONTHLY;
+                if(er.bymonthLastCount == 1) {
+                    model.monthlyRepeat = RecurrenceModel.MONTHLY_BY_LAST_DAY_OF_MONTH;
+                    model.monthlyByLastDayOfMonth = er.bymonthLastCount;
+                }
                 break;
             case EventRecurrence.YEARLY:
                 model.freq = RecurrenceModel.FREQ_YEARLY;
@@ -647,6 +662,7 @@ public class RecurrenceOptionCreator extends FrameLayout
         // Weekly && monthly repeat patterns
         er.bydayCount = 0;
         er.bymonthdayCount = 0;
+        er.bymonthLastCount = 0;
 
         switch (model.freq) {
             case RecurrenceModel.FREQ_MONTHLY:
@@ -671,6 +687,10 @@ public class RecurrenceOptionCreator extends FrameLayout
                     er.bydayCount = count;
                     er.byday[0] = EventRecurrence.timeDay2Day(model.monthlyByDayOfWeek);
                     er.bydayNum[0] = model.monthlyByNthDayOfWeek;
+                } else if(model.monthlyRepeat == RecurrenceModel.MONTHLY_BY_LAST_DAY_OF_MONTH) {
+                    er.bymonthLastCount = 1;
+                    er.bymonthLast = new int[1];
+                    er.bymonthLast[0] = model.monthlyByLastDayOfMonth;
                 }
                 break;
             case RecurrenceModel.FREQ_WEEKLY:
@@ -910,6 +930,8 @@ public class RecurrenceOptionCreator extends FrameLayout
                 findViewById(R.id.repeatMonthlyByNthDayOfTheWeek);
         mRepeatMonthlyByNthDayOfMonth = (RadioButton)
                 findViewById(R.id.repeatMonthlyByNthDayOfMonth);
+        mRepeatMonthlyByLastDyOfMonth = (RadioButton)
+                findViewById(R.id.repeatMonthlyByLastDayOfMonth);
     }
 
     public void initializeData(long currentlyChosenTime,
@@ -976,6 +998,7 @@ public class RecurrenceOptionCreator extends FrameLayout
             mEndDateTextView.setEnabled(false);
             mRepeatMonthlyByNthDayOfWeek.setEnabled(false);
             mRepeatMonthlyByNthDayOfMonth.setEnabled(false);
+            mRepeatMonthlyByLastDyOfMonth.setEnabled(false);
             for (Button button : mWeekByDayButtons) {
                 button.setEnabled(false);
             }
@@ -992,6 +1015,7 @@ public class RecurrenceOptionCreator extends FrameLayout
             mEndDateTextView.setEnabled(true);
             mRepeatMonthlyByNthDayOfWeek.setEnabled(true);
             mRepeatMonthlyByNthDayOfMonth.setEnabled(true);
+            mRepeatMonthlyByLastDyOfMonth.setEnabled(true);
             for (Button button : mWeekByDayButtons) {
                 button.setEnabled(true);
             }
@@ -1176,8 +1200,13 @@ public class RecurrenceOptionCreator extends FrameLayout
 
                 if (mModel.monthlyRepeat == RecurrenceModel.MONTHLY_BY_DATE) {
                     mMonthRepeatByRadioGroup.check(R.id.repeatMonthlyByNthDayOfMonth);
+                    mModel.monthlyByLastDayOfMonth = 0;
                 } else if (mModel.monthlyRepeat == RecurrenceModel.MONTHLY_BY_NTH_DAY_OF_WEEK) {
                     mMonthRepeatByRadioGroup.check(R.id.repeatMonthlyByNthDayOfTheWeek);
+                    mModel.monthlyByLastDayOfMonth = 0;
+                } else if(mModel.monthlyRepeat == RecurrenceModel.MONTHLY_BY_LAST_DAY_OF_MONTH) {
+                    mMonthRepeatByRadioGroup.check(R.id.repeatMonthlyByLastDayOfMonth);
+                    mModel.monthlyByLastDayOfMonth = 1;
                 }
 
                 if (mMonthRepeatByDayOfWeekStr == null) {
@@ -1379,6 +1408,8 @@ public class RecurrenceOptionCreator extends FrameLayout
             mModel.monthlyRepeat = RecurrenceModel.MONTHLY_BY_DATE;
         } else if (checkedId == R.id.repeatMonthlyByNthDayOfTheWeek) {
             mModel.monthlyRepeat = RecurrenceModel.MONTHLY_BY_NTH_DAY_OF_WEEK;
+        } else if (checkedId == R.id.repeatMonthlyByLastDayOfMonth) {
+            mModel.monthlyRepeat = RecurrenceModel.MONTHLY_BY_LAST_DAY_OF_MONTH;
         }
         updateDialog();
     }

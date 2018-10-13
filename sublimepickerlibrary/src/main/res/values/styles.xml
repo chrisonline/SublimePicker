@@ -74,7 +74,8 @@
     <!-- DayPickerView -->
 
     <style name="DayPickerViewStyle">
-        <item name="spDayPickerBgColor">@android:color/transparent</item>
+        <item name="spDayPickerBgColor">@color/black</item>
+        <!--<item name="spDayPickerBgColor">@android:color/transparent</item>-->
         <item name="spMonthTextAppearance">@style/SPMonthLabelTextAppearance</item>
         <item name="spWeekDayTextAppearance">@style/SPWeekDayLabelTextAppearance</item>
         <item name="spDateTextAppearance">@style/SPDayTextAppearance</item>
@@ -337,6 +338,7 @@
         <item name="android:textAppearance">@style/STextAppearance.FreqSpinnerItem</item>
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
+        <item name="android:background">@null</item>
     </style>
 
     <style name="STextAppearance.FreqSpinnerItem">
@@ -350,7 +352,6 @@
     </style>
 
     <style name="RecurrenceOptionCreatorFreqSpinnerStyle" parent="BaseRecurrenceOptionCreatorFreqSpinnerStyle">
-        <item name="android:background">@null</item>
         <item name="android:layout_marginTop">4dp</item>
         <item name="android:layout_marginBottom">4dp</item>
         <item name="android:layout_gravity">center_horizontal</item>

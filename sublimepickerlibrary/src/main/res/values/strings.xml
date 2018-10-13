@@ -147,6 +147,8 @@
 
     <string name="recurrence_heading">repeat options</string>
     <string name="recurrence_does_not_repeat">does not repeat</string>
+    <string name="recurrence_minutely">every minute</string>
+    <string name="recurrence_hourly">every hour</string>
     <string name="recurrence_daily">every day</string>
     <string name="recurrence_weekly">every week</string>
     <string name="recurrence_monthly">every month</string>
@@ -157,5 +159,6 @@
     <string name="sp_date_picker_prev_month_button">Previous month</string>
     <!-- Description of the button to move to the next month. [CHAR LIMIT=NONE] -->
     <string name="sp_date_picker_next_month_button">Next month</string>
+    <string name="on_the_last_day_each_month">on the last day each month</string>
 
 </resources>

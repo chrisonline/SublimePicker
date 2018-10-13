@@ -74,6 +74,8 @@ public class EventRecurrence {
     public int bymonthCount;
     public int[] bysetpos;
     public int bysetposCount;
+    public int[] bymonthLast;
+    public int bymonthLastCount;
 
     /**
      * maps a part string to a parser object
@@ -96,6 +98,7 @@ public class EventRecurrence {
         sParsePartMap.put("BYMONTH", new ParseByMonth());
         sParsePartMap.put("BYSETPOS", new ParseBySetPos());
         sParsePartMap.put("WKST", new ParseWkst());
+        sParsePartMap.put("BYMONTHLAST", new ParseByMonthLast());
     }
 
     /* values for bit vector that keeps track of what we have already seen */
@@ -113,6 +116,7 @@ public class EventRecurrence {
     private static final int PARSED_BYMONTH = 1 << 11;
     private static final int PARSED_BYSETPOS = 1 << 12;
     private static final int PARSED_WKST = 1 << 13;
+    private static final int PARSED_BYMONTH_LAST = 1 << 14;
 
     /**
      * maps a FREQ value to an integer constant
@@ -392,6 +396,7 @@ public class EventRecurrence {
         appendNumbers(s, ";BYWEEKNO=", this.byweeknoCount, this.byweekno);
         appendNumbers(s, ";BYMONTH=", this.bymonthCount, this.bymonth);
         appendNumbers(s, ";BYSETPOS=", this.bysetposCount, this.bysetpos);
+        appendNumbers(s, ";BYMONTHLAST=", this.bymonthLastCount, this.bymonthLast);
 
         return s.toString();
     }
@@ -490,6 +495,7 @@ public class EventRecurrence {
                 arraysEqual(byyearday, byyeardayCount, er.byyearday, er.byyeardayCount) &&
                 arraysEqual(byweekno, byweeknoCount, er.byweekno, er.byweeknoCount) &&
                 arraysEqual(bymonth, bymonthCount, er.bymonth, er.bymonthCount) &&
+                arraysEqual(bymonthLast, bymonthLastCount, er.bymonthLast, er.bymonthLastCount) &&
                 arraysEqual(bysetpos, bysetposCount, er.bysetpos, er.bysetposCount);
     }
 
@@ -512,7 +518,7 @@ public class EventRecurrence {
         until = null;
         freq = count = interval = bysecondCount = byminuteCount = byhourCount =
                 bydayCount = bymonthdayCount = byyeardayCount = byweeknoCount = bymonthCount =
-                        bysetposCount = 0;
+                        bymonthLastCount = bysetposCount = 0;
     }
 
     /**
@@ -833,7 +839,7 @@ public class EventRecurrence {
             int[] bydayNum;
             int bydayCount;
 
-            if (value.indexOf(",") < 0) {
+                if (value.indexOf(",") < 0) {
                 /* only one entry, skip split() overhead */
                 bydayCount = 1;
                 byday = new int[1];
@@ -932,6 +938,18 @@ public class EventRecurrence {
         }
     }
 
+    /**
+     * parses BYMONTHLAST=bymolist
+     */
+    private static class ParseByMonthLast extends PartParser {
+        @Override
+        public int parsePart(String value, EventRecurrence er) {
+            int[] bymonthLast = parseNumberList(value, 1, 12, false);
+            er.bymonthLast = bymonthLast;
+            er.bymonthLastCount = bymonthLast.length;
+            return PARSED_BYMONTH_LAST;
+        }
+    }
     /**
      * parses BYSETPOS=bysplist
      */

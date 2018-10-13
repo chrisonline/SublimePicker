@@ -17,6 +17,7 @@
 
 package com.appeaser.sublimepickerlibrary.datepicker;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -32,7 +33,7 @@ import com.appeaser.sublimepickerlibrary.R;
  * Indicator used for selected year in YearPickerView
  * Needs fixing.
  */
-class CircularIndicatorTextView extends TextView {
+public class CircularIndicatorTextView extends TextView {
     private static final int SELECTED_CIRCLE_ALPHA = 60;
 
     private final Paint mCirclePaint = new Paint();

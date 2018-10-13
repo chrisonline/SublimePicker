@@ -41,4 +41,6 @@
     <color name="sp_primary_text_default_material_dark">#ffffffff</color>
     <color name="sp_secondary_text_default_material_dark">#b3ffffff</color>
 
+    <color name="black">#000000</color>
+
 </resources>

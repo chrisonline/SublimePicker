@@ -31,9 +31,11 @@ import android.util.SparseArray;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.appeaser.sublimepickerlibrary.common.ButtonHandler;
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
@@ -617,6 +619,22 @@ public class SublimePicker extends FrameLayout
             mTimePicker.setCurrentMinute(timeParams[1] /* minute */);
             mTimePicker.setIs24HourView(mOptions.is24HourView());
             mTimePicker.setValidationCallback(this);
+
+            // if AM/PM we need to move the icon to the left, because we don't have enough space
+            // to show it on the right
+            if(ivRecurrenceOptionsTP.getLayoutParams() instanceof RelativeLayout.LayoutParams) {
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivRecurrenceOptionsTP.getLayoutParams();
+                if (!mOptions.is24HourView()) {
+                    params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                } else {
+                    params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                    if (SUtils.isApi_17_OrHigher()) {
+                        params.addRule(RelativeLayout.ALIGN_PARENT_END);
+                    }
+                }
+                ivRecurrenceOptionsTP.setLayoutParams(params); //causes layout update
+            }
+
 
             ivRecurrenceOptionsTP.setVisibility(mRecurrencePickerEnabled ?
                     View.VISIBLE : View.GONE);

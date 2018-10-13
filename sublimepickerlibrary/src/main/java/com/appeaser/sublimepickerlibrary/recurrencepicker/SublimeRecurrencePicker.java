@@ -53,7 +53,7 @@ public class SublimeRecurrencePicker extends FrameLayout
     // format. Choosing 'CUSTOM' takes the user
     // to 'RecurrenceOptionCreator'.
     public enum RecurrenceOption {
-        DOES_NOT_REPEAT("DOES NOT REPEAT"),
+        DOES_NOT_REPEAT("DOES NOT REPEAT"), MINUTELY("MINUTELY"), HOURLY("HOURLY"),
         DAILY("DAILY"), WEEKLY("WEEKLY"), MONTHLY("MONTHLY"),
         YEARLY("YEARLY"), CUSTOM("CUSTOM...");
 
@@ -198,6 +198,10 @@ public class SublimeRecurrencePicker extends FrameLayout
         mRepeatOptionTextViews.add(
                 (TextView) findViewById(R.id.tvDoesNotRepeat));
         mRepeatOptionTextViews.add(
+                (TextView) findViewById(R.id.tvMinutely));
+        mRepeatOptionTextViews.add(
+                (TextView) findViewById(R.id.tvHourly));
+        mRepeatOptionTextViews.add(
                 (TextView) findViewById(R.id.tvDaily));
         mRepeatOptionTextViews.add(
                 (TextView) findViewById(R.id.tvWeekly));
@@ -263,6 +267,12 @@ public class SublimeRecurrencePicker extends FrameLayout
         switch (recurrenceOption) {
             case DOES_NOT_REPEAT:
                 viewIdToSelect = R.id.tvDoesNotRepeat;
+                break;
+            case MINUTELY:
+                viewIdToSelect = R.id.tvMinutely;
+                break;
+            case HOURLY:
+                viewIdToSelect = R.id.tvHourly;
                 break;
             case DAILY:
                 viewIdToSelect = R.id.tvDaily;
@@ -342,6 +352,10 @@ public class SublimeRecurrencePicker extends FrameLayout
             return;
         } else if (v.getId() == R.id.tvDoesNotRepeat) {
             mCurrentRecurrenceOption = RecurrenceOption.DOES_NOT_REPEAT;
+        } else if (v.getId() == R.id.tvMinutely) {
+            mCurrentRecurrenceOption = RecurrenceOption.MINUTELY;
+        } else if (v.getId() == R.id.tvHourly) {
+            mCurrentRecurrenceOption = RecurrenceOption.HOURLY;
         } else if (v.getId() == R.id.tvDaily) {
             mCurrentRecurrenceOption = RecurrenceOption.DAILY;
         } else if (v.getId() == R.id.tvWeekly) {
