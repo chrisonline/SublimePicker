@@ -29,7 +29,7 @@ ext {
     siteUrl = 'https://github.com/chrisonline/SublimePicker'
     gitUrl = 'https://github.com/chrisonline/SublimePicker.git'
 
-    libraryVersion = '2.1.4'
+    libraryVersion = '2.1.5'
 
     developerId = 'chrisonline'
     developerName = 'Christian Grasser (Fork from Vikram Kakkar)'
@@ -69,11 +69,10 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.1.0'
-    implementation 'com.android.support:support-v4:27.1.0'
-    implementation 'com.android.support:gridlayout-v7:27.1.0'
-    implementation 'com.android.support:support-annotations:27.1.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:gridlayout-v7:27.1.1'
+    implementation 'com.android.support:support-annotations:27.1.1'
 
     // For IconicDrawable - No download needed (see https://github.com/mikepenz/Android-Iconics)
     implementation "com.mikepenz:iconics-core:2.8.2@aar"
