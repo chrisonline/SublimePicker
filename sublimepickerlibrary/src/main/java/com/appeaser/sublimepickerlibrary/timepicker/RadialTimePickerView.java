@@ -37,6 +37,7 @@ import android.graphics.Region;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
@@ -50,6 +51,8 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.appeaser.sublimepickerlibrary.R;
+import com.appeaser.sublimepickerlibrary.canvassaveproxy.CanvasSaveProxy;
+import com.appeaser.sublimepickerlibrary.canvassaveproxy.CanvasSaveProxyFactory;
 import com.appeaser.sublimepickerlibrary.utilities.SUtils;
 
 import java.util.ArrayList;
@@ -187,6 +190,9 @@ public class RadialTimePickerView extends View {
 
     private boolean mInputEnabled = true;
 
+    private final CanvasSaveProxyFactory mCanvasSaveProxyFactory;
+    private CanvasSaveProxy mCanvasSaveProxy;
+
     public interface OnValueSelectedListener {
         void onValueSelected(int pickerIndex, int newValue, boolean autoAdvance);
     }
@@ -301,12 +307,15 @@ public class RadialTimePickerView extends View {
     public RadialTimePickerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs, defStyleAttr, R.style.RadialTimePickerViewStyle);
+        mCanvasSaveProxyFactory = new CanvasSaveProxyFactory();
     }
+
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public RadialTimePickerView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs);
         init(attrs, defStyleAttr, defStyleRes);
+        mCanvasSaveProxyFactory = new CanvasSaveProxyFactory();
     }
 
     private void init(AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -701,7 +710,12 @@ public class RadialTimePickerView extends View {
 
             // Exclude the selector region, then draw minutes with no
             // activated states.
-            canvas.save(Canvas.CLIP_SAVE_FLAG);
+            if(mCanvasSaveProxy == null || !mCanvasSaveProxy.isFor(canvas)) {
+                mCanvasSaveProxy = mCanvasSaveProxyFactory.create(canvas);
+            }
+
+            mCanvasSaveProxy.save();
+
             canvas.clipPath(mSelectorPath, Region.Op.DIFFERENCE);
             drawTextElements(canvas, mTextSize[MINUTES], mTypeface, mTextColor[MINUTES],
                     mMinutesText, mOuterTextX[MINUTES], mOuterTextY[MINUTES], mPaint[MINUTES],
@@ -710,7 +724,8 @@ public class RadialTimePickerView extends View {
 
             // Intersect the selector region, then draw minutes with only
             // activated states.
-            canvas.save(Canvas.CLIP_SAVE_FLAG);
+            mCanvasSaveProxy.save();
+
             canvas.clipPath(mSelectorPath, Region.Op.INTERSECT);
             drawTextElements(canvas, mTextSize[MINUTES], mTypeface, mTextColor[MINUTES],
                     mMinutesText, mOuterTextX[MINUTES], mOuterTextY[MINUTES], mPaint[MINUTES],
