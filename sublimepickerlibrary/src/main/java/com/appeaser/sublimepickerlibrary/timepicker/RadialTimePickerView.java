@@ -37,7 +37,6 @@ import android.graphics.Region;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
@@ -65,6 +64,9 @@ import java.util.Locale;
  */
 public class RadialTimePickerView extends View {
     private static final String TAG = RadialTimePickerView.class.getSimpleName();
+
+    private final CanvasSaveProxyFactory mCanvasSaveProxyFactory;
+    private CanvasSaveProxy mCanvasSaveProxy;
 
     private static final int HOURS = 0;
     private static final int MINUTES = 1;
@@ -189,9 +191,6 @@ public class RadialTimePickerView extends View {
     private OnValueSelectedListener mListener;
 
     private boolean mInputEnabled = true;
-
-    private final CanvasSaveProxyFactory mCanvasSaveProxyFactory;
-    private CanvasSaveProxy mCanvasSaveProxy;
 
     public interface OnValueSelectedListener {
         void onValueSelected(int pickerIndex, int newValue, boolean autoAdvance);
@@ -713,9 +712,8 @@ public class RadialTimePickerView extends View {
             if(mCanvasSaveProxy == null || !mCanvasSaveProxy.isFor(canvas)) {
                 mCanvasSaveProxy = mCanvasSaveProxyFactory.create(canvas);
             }
-
             mCanvasSaveProxy.save();
-
+            //canvas.save(Canvas.CLIP_SAVE_FLAG);
             canvas.clipPath(mSelectorPath, Region.Op.DIFFERENCE);
             drawTextElements(canvas, mTextSize[MINUTES], mTypeface, mTextColor[MINUTES],
                     mMinutesText, mOuterTextX[MINUTES], mOuterTextY[MINUTES], mPaint[MINUTES],
@@ -725,7 +723,7 @@ public class RadialTimePickerView extends View {
             // Intersect the selector region, then draw minutes with only
             // activated states.
             mCanvasSaveProxy.save();
-
+            //canvas.save(Canvas.CLIP_SAVE_FLAG);
             canvas.clipPath(mSelectorPath, Region.Op.INTERSECT);
             drawTextElements(canvas, mTextSize[MINUTES], mTypeface, mTextColor[MINUTES],
                     mMinutesText, mOuterTextX[MINUTES], mOuterTextY[MINUTES], mPaint[MINUTES],

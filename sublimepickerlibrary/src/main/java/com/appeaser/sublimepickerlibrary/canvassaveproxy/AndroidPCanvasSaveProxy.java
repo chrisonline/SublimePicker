@@ -1,16 +1,12 @@
 package com.appeaser.sublimepickerlibrary.canvassaveproxy;
 
-
 import android.graphics.Canvas;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 
-/**
- * Created by Christian Grasser on 14.10.2018.
- */
 @RequiresApi(api = Build.VERSION_CODES.P)
-public class AndroidPCanvasSaveProxy implements CanvasSaveProxy {
+class AndroidPCanvasSaveProxy implements CanvasSaveProxy {
     private static final String TAG = CanvasSaveProxy.class.getSimpleName();
     private final Canvas mCanvas;
 

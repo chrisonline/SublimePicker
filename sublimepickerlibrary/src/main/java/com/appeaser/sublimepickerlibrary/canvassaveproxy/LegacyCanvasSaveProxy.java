@@ -7,10 +7,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-/**
- * Created by Christian Grasser on 14.10.2018.
- */
-public class LegacyCanvasSaveProxy implements CanvasSaveProxy {
+@Deprecated
+class LegacyCanvasSaveProxy implements CanvasSaveProxy {
     private static final String TAG = CanvasSaveProxy.class.getSimpleName();
     private static final String METHOD_NAME = "save";
     private static final String FIELD_NAME = "CLIP_SAVE_FLAG";

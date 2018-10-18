@@ -3,9 +3,6 @@ package com.appeaser.sublimepickerlibrary.canvassaveproxy;
 import android.graphics.Canvas;
 import android.os.Build;
 
-/**
- * Created by Christian Grasser on 14.10.2018.
- */
 public class CanvasSaveProxyFactory {
 
     public CanvasSaveProxy create(final Canvas canvas) {
