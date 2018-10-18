@@ -15,7 +15,7 @@ Gradle dependency
 
 `compile 'com.colapps.sublimepickerlibrary:sublimepickerlibrary:2.1.5'`
 
-ProGuard rulse
+ProGuard rule
 -----------------
 Not needed anymore is added in the library
 
