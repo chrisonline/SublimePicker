@@ -15,6 +15,10 @@ Gradle dependency
 
 `compile 'com.colapps.sublimepickerlibrary:sublimepickerlibrary:2.1.5'`
 
+ProGuard rule
+-----------------
+Not needed anymore is added in the library
+
 Walkthrough
 -----------
 Following screenshots have been taken from the sample application: [<img alt="Get it on Google Play" height="45px" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge-border.png" />][1]
