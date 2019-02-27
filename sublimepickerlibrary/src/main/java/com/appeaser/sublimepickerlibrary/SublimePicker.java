@@ -437,7 +437,7 @@ public class SublimePicker extends FrameLayout
         }
 
         IconicsDrawable iconicsDrawable = new IconicsDrawable(getContext())
-                .icon(CommunityMaterial.Icon.cmd_repeat)
+                .icon(CommunityMaterial.Icon2.cmd_repeat)
                 .sizeDp(24)
                 .color(iconColor);
 
