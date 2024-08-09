@@ -4,17 +4,12 @@ buildscript {
     }
 
     dependencies {
-
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
 }
 
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-
-// Force character encoding in case the workspace was not set up correctly
-//tasks.withType(Javadoc) {
-    //options.encoding = 'x-UTF-16LE-BOM'
-//}
 
 ext {
     bintrayRepo = 'maven'

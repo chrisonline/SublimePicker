@@ -104,7 +104,7 @@ Button at bottom-left corner can be used to switch to TimePicker:
 
 License
 -------
-    Copyright (c) 2015 Vikram Kakkar
+    Copyright (c) 2018 Vikram Kakkar
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
