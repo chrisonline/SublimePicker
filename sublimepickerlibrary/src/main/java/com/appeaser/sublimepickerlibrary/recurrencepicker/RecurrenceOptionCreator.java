@@ -226,7 +226,7 @@ public class RecurrenceOptionCreator extends FrameLayout
         return SublimeRecurrencePicker.RecurrenceOption.CUSTOM;
     }
 
-    private class RecurrenceModel implements Parcelable {
+    private static class RecurrenceModel implements Parcelable {
 
         // Should match EventRecurrence.DAILY, etc
         static final int FREQ_MINUTELY = 0;
@@ -375,7 +375,7 @@ public class RecurrenceOptionCreator extends FrameLayout
 
         @SuppressWarnings("all")
         // suppress unused and hiding
-        public final Parcelable.Creator<RecurrenceModel> CREATOR = new Creator<RecurrenceModel>() {
+        public static final Parcelable.Creator<RecurrenceModel> CREATOR = new Creator<RecurrenceModel>() {
 
             public RecurrenceModel createFromParcel(Parcel in) {
                 return new RecurrenceModel(in);
